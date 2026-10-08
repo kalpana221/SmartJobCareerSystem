@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Admin Login | Smart Job Career</title>
+
+```
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #eef4ff, #f8fafc);
+        min-height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page-wrapper {
+        width: 92%;
+        max-width: 950px;
+        display: flex;
+        background: white;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
+    }
+
+    /* Left panel */
+    .info-panel {
+        width: 45%;
+        background: linear-gradient(135deg, #1e40af, #2563eb);
+        color: white;
+        padding: 50px 40px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .brand {
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 45px;
+    }
+
+    .admin-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.15);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 35px;
+        margin-bottom: 25px;
+    }
+
+    .info-panel h1 {
+        font-size: 32px;
+        margin: 0 0 15px;
+    }
+
+    .info-panel p {
+        line-height: 1.7;
+        font-size: 15px;
+        color: #dbeafe;
+    }
+
+    .feature-list {
+        margin-top: 30px;
+    }
+
+    .feature {
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+
+    /* Right panel */
+    .login-panel {
+        width: 55%;
+        padding: 50px;
+    }
+
+    .login-panel h2 {
+        margin: 0;
+        color: #111827;
+        font-size: 28px;
+    }
+
+    .subtitle {
+        color: #6b7280;
+        margin: 8px 0 30px;
+        font-size: 14px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #374151;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 100%;
+        padding: 13px 14px;
+
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+
+        font-size: 14px;
+        outline: none;
+
+        transition: 0.2s;
+    }
+
+    input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    button {
+        width: 100%;
+        padding: 13px;
+
+        border: none;
+        border-radius: 8px;
+
+        background: #2563eb;
+        color: white;
+
+        font-size: 15px;
+        font-weight: 600;
+
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: #1d4ed8;
+    }
+
+    .security-note {
+        margin-top: 20px;
+        padding: 12px 14px;
+
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+
+        color: #6b7280;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .back-link {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .back-link a {
+        color: #2563eb;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .back-link a:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 750px) {
+
+        .page-wrapper {
+            flex-direction: column;
+            width: 92%;
+        }
+
+        .info-panel,
+        .login-panel {
+            width: 100%;
+        }
+
+        .info-panel {
+            padding: 35px 30px;
+        }
+
+        .brand {
+            margin-bottom: 25px;
+        }
+
+        .info-panel h1 {
+            font-size: 27px;
+        }
+
+        .feature-list {
+            display: none;
+        }
+
+        .login-panel {
+            padding: 35px 30px;
+        }
+    }
+
+    @media (max-width: 450px) {
+
+        .info-panel {
+            padding: 30px 25px;
+        }
+
+        .login-panel {
+            padding: 30px 25px;
+        }
+
+        .info-panel h1 {
+            font-size: 24px;
+        }
+
+        .login-panel h2 {
+            font-size: 24px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="page-wrapper">
+
+    <!-- Left Information Panel -->
+    <div class="info-panel">
+
+        <div class="brand">
+            Smart Job Career
+        </div>
+
+        <div class="admin-icon">
+            🔐
+        </div>
+
+        <h1>Admin Portal</h1>
+
+        <p>
+            Manage users, job applications, interviews,
+            and resumes from one centralized administration panel.
+        </p>
+
+        <div class="feature-list">
+
+            <div class="feature">
+                ✓ Manage registered users
+            </div>
+
+            <div class="feature">
+                ✓ Monitor job applications
+            </div>
+
+            <div class="feature">
+                ✓ Manage interview records
+            </div>
+
+            <div class="feature">
+                ✓ Access uploaded resumes
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Login Panel -->
+    <div class="login-panel">
+
+        <h2>Admin Login</h2>
+
+        <p class="subtitle">
+            Sign in to access the administration dashboard.
+        </p>
+
+
+        <form method="POST">
+
+            <div class="form-group">
+
+                <label for="email">
+                    Admin Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter admin email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter admin password"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit">
+                Sign In to Admin Panel
+            </button>
+
+        </form>
+
+
+        <div class="security-note">
+            🔒 This area is restricted to authorized administrators.
+        </div>
+
+
+        <div class="back-link">
+
+            <a href="/login">
+                ← Back to User Login
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</body>
+
+</html>

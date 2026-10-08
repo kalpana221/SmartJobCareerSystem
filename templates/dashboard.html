@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Smart Job Career Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* Header */
+
+        .header {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+        }
+
+        .logout {
+            background-color: white;
+            color: #1d4ed8;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            background-color: #e5e7eb;
+        }
+
+        /* Main container */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #6b7280;
+        }
+
+        /* Section title */
+
+        .section-title {
+            margin: 30px 0 15px;
+            font-size: 22px;
+        }
+
+        /* Summary cards */
+
+        .summary-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .summary-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .summary-card h3 {
+            color: #6b7280;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .summary-card p {
+            font-size: 30px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        /* Statistics cards */
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .stat-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+        }
+
+        .stat-card h3 {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            font-size: 25px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        /* Interview statistics */
+
+        .interview-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        /* Resume */
+
+        .resume-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+            width: 250px;
+        }
+
+        .resume-card h3 {
+            color: #6b7280;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .resume-card p {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        /* Chart */
+
+        .chart-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .chart-container canvas {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        /* Quick actions */
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .action-button {
+            background-color: white;
+            padding: 18px;
+            text-align: center;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+            transition: 0.2s;
+        }
+
+        .action-button:hover {
+            background-color: #2563eb;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+
+            .summary-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .interview-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .summary-container,
+            .stats-container,
+            .interview-container,
+            .actions {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>Smart Job Career Dashboard</h1>
+
+        <a href="/logout" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+
+        <!-- Welcome -->
+
+        <div class="welcome">
+
+            <h2>Welcome!</h2>
+
+            <p>
+                You are successfully logged in.
+                Manage your job applications, interviews and resumes from here.
+            </p>
+
+        </div>
+
+
+        <!-- Quick Summary -->
+
+        <h2 class="section-title">
+            Quick Summary
+        </h2>
+
+        <div class="summary-container">
+
+            <div class="summary-card">
+
+                <h3>Total Applications</h3>
+
+                <p>{{ total }}</p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>Total Interviews</h3>
+
+                <p>{{ total_interviews }}</p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>Selected</h3>
+
+                <p>{{ selected }}</p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>Total Resumes</h3>
+
+                <p>{{ total_resumes }}</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Application Statistics -->
+
+        <h2 class="section-title">
+            Application Statistics
+        </h2>
+
+        <div class="stats-container">
+
+            <div class="stat-card">
+
+                <h3>Total Applications</h3>
+
+                <p>{{ total }}</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Applied</h3>
+
+                <p>{{ applied }}</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Interview</h3>
+
+                <p>{{ interview }}</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Selected</h3>
+
+                <p>{{ selected }}</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Rejected</h3>
+
+                <p>{{ rejected }}</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Interview Statistics -->
+
+        <h2 class="section-title">
+            Interview Statistics
+        </h2>
+
+        <div class="interview-container">
+
+            <div class="stat-card">
+
+                <h3>Total Interviews</h3>
+
+                <p>{{ total_interviews }}</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Scheduled</h3>
+
+                <p>{{ scheduled }}</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Completed</h3>
+
+                <p>{{ completed }}</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Cancelled</h3>
+
+                <p>{{ cancelled }}</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Resume Statistics -->
+
+        <h2 class="section-title">
+            Resume Statistics
+        </h2>
+
+        <div class="resume-card">
+
+            <h3>Total Resumes</h3>
+
+            <p>{{ total_resumes }}</p>
+
+        </div>
+
+
+        <!-- Application Chart -->
+
+        <h2 class="section-title">
+            Application Status Overview
+        </h2>
+
+        <div class="chart-container">
+
+            <canvas
+                id="applicationChart"
+                width="500"
+                height="250">
+            </canvas>
+
+        </div>
+
+
+        <script>
+
+            const ctx =
+                document.getElementById("applicationChart");
+
+            new Chart(ctx, {
+
+                type: "pie",
+
+                data: {
+
+                    labels: [
+                        "Applied",
+                        "Interview",
+                        "Selected",
+                        "Rejected"
+                    ],
+
+                    datasets: [{
+
+                        data: [
+                            {{ applied }},
+                            {{ interview }},
+                            {{ selected }},
+                            {{ rejected }}
+                        ]
+
+                    }]
+
+                },
+
+                options: {
+
+                    responsive: false
+
+                }
+
+            });
+
+        </script>
+
+
+        <!-- Quick Actions -->
+
+        <h2 class="section-title">
+            Quick Actions
+        </h2>
+
+        <div class="actions">
+
+            <a
+                href="/add-application"
+                class="action-button">
+
+                Add Job Application
+
+            </a>
+
+
+            <a
+                href="/applications"
+                class="action-button">
+
+                View Applications
+
+            </a>
+
+
+            <a
+                href="/add-interview"
+                class="action-button">
+
+                Add Interview
+
+            </a>
+
+
+            <a
+                href="/interviews"
+                class="action-button">
+
+                View Interviews
+
+            </a>
+
+
+            <a
+                href="/upload-resume"
+                class="action-button">
+
+                Upload Resume
+
+            </a>
+
+
+            <a
+                href="/resumes"
+                class="action-button">
+
+                View Resumes
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

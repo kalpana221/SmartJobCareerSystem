@@ -1,0 +1,644 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Job Applications | Smart Job Career</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            padding: 22px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 25px;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 20px;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* MAIN CONTAINER */
+
+        .container {
+            max-width: 1200px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h2 {
+            font-size: 28px;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #6b7280;
+        }
+
+
+        /* SEARCH BOX */
+
+        .search-card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            margin-bottom: 25px;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-form input,
+        .search-form select {
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-form input {
+            flex: 1;
+            min-width: 230px;
+        }
+
+        .search-form input:focus,
+        .search-form select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-button {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background: #1d4ed8;
+        }
+
+        .clear-button {
+            padding: 11px 18px;
+            border-radius: 7px;
+            border: 1px solid #d1d5db;
+            color: #374151;
+            text-decoration: none;
+            background: #f9fafb;
+            font-size: 14px;
+        }
+
+        .clear-button:hover {
+            background: #f3f4f6;
+        }
+
+
+        /* TABLE CARD */
+
+        .table-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        th {
+            background: #f1f5f9;
+            color: #374151;
+            font-size: 13px;
+            text-transform: uppercase;
+            padding: 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 16px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        tr:hover td {
+            background: #f8fafc;
+        }
+
+
+        /* STATUS BADGES */
+
+        .status {
+            display: inline-block;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status-applied {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .status-interview {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-selected {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+
+        /* ACTION BUTTONS */
+
+        .edit-button {
+            display: inline-block;
+            padding: 7px 12px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .edit-button:hover {
+            background: #dbeafe;
+        }
+
+        .delete-button {
+            padding: 7px 12px;
+            background: #fee2e2;
+            color: #dc2626;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background: #fecaca;
+        }
+
+
+        /* BOTTOM ACTIONS */
+
+        .bottom-actions {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .add-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #2563eb;
+            color: white;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .add-button:hover {
+            background: #1d4ed8;
+        }
+
+        .dashboard-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background: white;
+            color: #374151;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .dashboard-button:hover {
+            background: #f3f4f6;
+        }
+
+
+        /* NO DATA */
+
+        .no-data {
+            text-align: center;
+            padding: 45px;
+            color: #6b7280;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 768px) {
+
+            .header {
+                padding: 18px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .header a {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+
+            .page-title h2 {
+                font-size: 24px;
+            }
+
+            .search-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-form input,
+            .search-form select,
+            .search-button,
+            .clear-button {
+                width: 100%;
+            }
+
+            .bottom-actions {
+                flex-direction: column;
+            }
+
+            .add-button,
+            .dashboard-button {
+                text-align: center;
+                width: 100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>
+            Smart Job Career
+        </h1>
+
+        <div>
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+
+        <div class="page-title">
+
+            <h2>
+                My Job Applications
+            </h2>
+
+            <p>
+                Track and manage all your job applications in one place.
+            </p>
+
+        </div>
+
+
+        <!-- SEARCH AND FILTER -->
+
+        <div class="search-card">
+
+            <form
+                method="GET"
+                action="/applications"
+                class="search-form"
+            >
+
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search company or job role"
+                    value="{{ search }}"
+                >
+
+
+                <select name="status">
+
+                    <option value="">
+                        All Status
+                    </option>
+
+                    <option
+                        value="Applied"
+                        {% if status == "Applied" %}selected{% endif %}
+                    >
+                        Applied
+                    </option>
+
+                    <option
+                        value="Interview"
+                        {% if status == "Interview" %}selected{% endif %}
+                    >
+                        Interview
+                    </option>
+
+                    <option
+                        value="Selected"
+                        {% if status == "Selected" %}selected{% endif %}
+                    >
+                        Selected
+                    </option>
+
+                    <option
+                        value="Rejected"
+                        {% if status == "Rejected" %}selected{% endif %}
+                    >
+                        Rejected
+                    </option>
+
+                </select>
+
+
+                <button
+                    type="submit"
+                    class="search-button"
+                >
+                    Search
+                </button>
+
+
+                <a
+                    href="/applications"
+                    class="clear-button"
+                >
+                    Clear
+                </a>
+
+            </form>
+
+        </div>
+
+
+        <!-- APPLICATION TABLE -->
+
+        <div class="table-card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Company</th>
+
+                        <th>Job Role</th>
+
+                        <th>Location</th>
+
+                        <th>Status</th>
+
+                        <th>Applied Date</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for application in applications %}
+
+                    <tr>
+
+                        <td>
+                            #{{ application.application_id }}
+                        </td>
+
+
+                        <td>
+                            <strong>
+                                {{ application.company_name }}
+                            </strong>
+                        </td>
+
+
+                        <td>
+                            {{ application.job_role }}
+                        </td>
+
+
+                        <td>
+                            {{ application.location }}
+                        </td>
+
+
+                        <td>
+
+                            {% if application.status == "Applied" %}
+
+                                <span class="status status-applied">
+                                    Applied
+                                </span>
+
+                            {% elif application.status == "Interview" %}
+
+                                <span class="status status-interview">
+                                    Interview
+                                </span>
+
+                            {% elif application.status == "Selected" %}
+
+                                <span class="status status-selected">
+                                    Selected
+                                </span>
+
+                            {% elif application.status == "Rejected" %}
+
+                                <span class="status status-rejected">
+                                    Rejected
+                                </span>
+
+                            {% else %}
+
+                                <span class="status">
+                                    {{ application.status }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+                            {{ application.applied_date }}
+                        </td>
+
+
+                        <td>
+
+                            <a
+                                href="/edit-application/{{ application.application_id }}"
+                                class="edit-button"
+                            >
+                                Edit
+                            </a>
+
+
+                            <form
+                                action="/delete-application/{{ application.application_id }}"
+                                method="POST"
+                                style="display:inline;"
+                                onsubmit="return confirm('Are you sure you want to delete this job application and its related interviews?');"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="delete-button"
+                                >
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+
+                    {% else %}
+
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            class="no-data"
+                        >
+                            No job applications found.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- BOTTOM ACTIONS -->
+
+        <div class="bottom-actions">
+
+            <a
+                href="/add-application"
+                class="add-button"
+            >
+                + Add Another Application
+            </a>
+
+
+            <a
+                href="/dashboard"
+                class="dashboard-button"
+            >
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

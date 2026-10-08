@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interviews - Admin</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        .header {
+            background: #1f2937;
+            color: white;
+            padding: 20px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+        }
+
+        .back-btn {
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+        }
+
+        .back-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .title-section {
+            margin-bottom: 25px;
+        }
+
+        .title-section h2 {
+            margin-bottom: 8px;
+        }
+
+        .title-section p {
+            color: #6b7280;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1300px;
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background: #f9fafb;
+        }
+
+        .interview-id {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .email {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .scheduled {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .cancelled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .notes {
+            max-width: 250px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+
+            .header {
+                padding: 15px 20px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .container {
+                margin: 25px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+
+        <h1>Interview Management</h1>
+
+        <a href="/admin-dashboard" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="title-section">
+
+            <h2>All Interviews</h2>
+
+            <p>
+                View interview schedules and details of all registered users.
+            </p>
+
+        </div>
+
+
+        <div class="table-container">
+
+            {% if interviews %}
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>Company</th>
+                        <th>Job Role</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for interview in interviews %}
+
+                    <tr>
+
+                        <td class="interview-id">
+                            {{ interview.interview_id }}
+                        </td>
+
+                        <td>
+                            {{ interview.user_name }}
+                        </td>
+
+                        <td class="email">
+                            {{ interview.user_email }}
+                        </td>
+
+                        <td>
+                            {{ interview.company_name }}
+                        </td>
+
+                        <td>
+                            {{ interview.job_role }}
+                        </td>
+
+                        <td>
+                            {{ interview.interview_date }}
+                        </td>
+
+                        <td>
+                            {{ interview.interview_time }}
+                        </td>
+
+                        <td>
+                            {{ interview.interview_type }}
+                        </td>
+
+                        <td>
+
+                            {% if interview.status == "Scheduled" %}
+
+                                <span class="status scheduled">
+                                    Scheduled
+                                </span>
+
+                            {% elif interview.status == "Completed" %}
+
+                                <span class="status completed">
+                                    Completed
+                                </span>
+
+                            {% elif interview.status == "Cancelled" %}
+
+                                <span class="status cancelled">
+                                    Cancelled
+                                </span>
+
+                            {% else %}
+
+                                <span class="status">
+                                    {{ interview.status }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td class="notes">
+                            {{ interview.notes or "No notes" }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <div class="empty">
+                No interviews found.
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>
